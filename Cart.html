@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CART</title>
+    <link rel="stylesheet" href="Shop.css">
+    <style>
+        div{
+            border: 1px solid white;
+            width: 250px;
+            justify-items: center;
+            align-content: center;
+            text-align: center; 
+            border-radius: 10px;
+            margin: 30px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.404);   
+            transition: transform 0.2s ease;     
+        }
+        div:hover{
+            transform: scale(1.05);
+        }
+        #cart-images{
+            transform: none;
+            box-shadow: none;
+            margin:0px;
+            width: 100%;
+            justify-items: center;
+            align-content: center;
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            border:none
+        }
+        button:hover{
+            background-color: rgb(231, 77, 77);
+        }
+        #total{
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); 
+        }
+        
+    </style>
+</head>
+<body style="background-repeat: no-repeat;min-height: 120vh; background-attachment: fixed;">
+    <header>
+        <center><h1 style="font-size: xx-large;">CART</h1></center>
+        <ul>
+            <li><a href="Index.html">HOME</a></li>
+            <li><a href="Electronics.html">ELECTRONICS</a></li>
+            <li><a href="Grocery.html">GROCERY</a></li>
+            <li><a href="Home&Furniture.html">HOME DECORS</a></li>
+        </ul>
+    </header>
+    <center><div style="background-color: rgb(255, 235, 205);transform: none;"><h2 style="color: rgb(0, 55, 68);"><strong> ITEMS IN THE CART</strong></h2></div></center>
+    <div id="cart-images"></div>
+    <hr>
+    <center><div id="total" style="margin-top: 13px;background-color: crimson;box-shadow: 0px 4px 0px rgba(255, 255, 255, 0.404);width: 400px; transform: none;"></div></center>
+    <center> <div id="thanks"></div></center>
+    <script>
+        window.onload = function showcart() {
+            const images = JSON.parse(localStorage.getItem('savedImages')) || [];
+         const cartImagesContainer = document.getElementById('cart-images');
+         const name=localStorage.getItem('uname');
+
+            if (images.length > 0) {
+                images.forEach((imageObject, index) => {
+
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageObject.src;
+                    imgElement.alt = imageObject.name;
+                    imgElement.style.width = '200px';
+                    imgElement.style.height='200px'
+                    imgElement.style.marginBottom = '10px';
+                    const nameElement = document.createElement('p');
+                    nameElement.textContent = `${imageObject.name}`;
+                    const priceElement=document.createElement('p');
+                    priceElement.textContent=`Price: Rs ${imageObject.price}`
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.style.marginLeft = '10px';
+                    removeButton.onclick = function() {
+                        removeImage(index); 
+                    };
+                    const imageContainer = document.createElement('div');
+                    imageContainer.appendChild(imgElement);
+                    imageContainer.appendChild(nameElement);
+                    imageContainer.appendChild(priceElement);
+                    imageContainer.appendChild(removeButton);
+                    cartImagesContainer.appendChild(imageContainer);
+                    
+                });
+            } else {
+                const noImagesMessage = document.createElement('p');
+                noImagesMessage.textContent = 'No items in the cart';
+                cartImagesContainer.appendChild(noImagesMessage);
+            }Total();
+            function Total(){
+                var totalPrice=0
+                images.forEach((img,index)=>{
+                    totalPrice=totalPrice+img.price;
+                })
+                const para=document.createElement("p");
+                para.textContent=`Total Price of the items= Rs ${totalPrice}`
+                para.style.color='blanchedalmond';
+                para.style.textShadow.sc
+                para.style.fontFamily='Verdana, Geneva, Tahoma, sans-serif'
+                const divtotal=document.getElementById("total");
+                divtotal.appendChild(para)
+                const name=localStorage.getItem('uname')
+                const thank=document.createElement("p");
+                thank.textContent=`Thank you for shopping ${name}`  
+                const t=document.getElementById("thanks");
+                t.appendChild(thank)   ;
+
+            }
+        };
+
+        function removeImage(index) {
+            const images = JSON.parse(localStorage.getItem('savedImages')) || [];
+            images.splice(index, 1)
+            localStorage.setItem('savedImages', JSON.stringify(images));
+            window.location.reload();
+        }
+
+    </script>
+</body>
+</html>

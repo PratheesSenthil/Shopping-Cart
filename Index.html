@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="Shop.css">
+    <style>
+        img{
+            width: 350px;
+            height: 300px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="bg">
+    <header>
+        <center>
+            <h1>SHOPPING CART</h1>
+            <h2 style="color: rgb(211, 35, 35);">HOME</h2>
+        </center>
+    </header>
+    <hr>
+    <div class="form" id="form-container">
+        <form onsubmit="validate(); return false;">
+            <table>
+                <tr>
+                    <td colspan="2" style="text-align: center;margin-bottom: 5px;"><p style="color: crimson;">REGISTER FORM</p></td>
+                </tr>
+                <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" id="name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pnum">Phone Number</label></td>
+                    <td><input type="number" id="pnum" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button type="submit" style="background-color:brown;">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="H-flex" id="H-flex">
+        <a href="Electronics.html"><div class="H-Electronics" id="H-Electronics">
+        </div></a>
+        <a href="Grocery.html">
+            <div class="H-Grocery" id="H-Grocery">
+            </div>
+        </a>
+        <a href="Home&Furniture.html"><div class="H-Home-Furniture" id="H-Home-Furniture">
+        </div></a>
+    </div>
+    <center><div id="welcome" ></div></center>
+
+    <script>
+        function validate() {
+            var name = document.getElementById("name").value;
+            document.getElementById("form-container").style.display = "none";
+            const ele = document.getElementById("H-Electronics");
+                ele.style.boxShadow="0 4px 8px rgba(255, 255, 255, 0.404)";
+                ele.style.border="1px solid white"
+                ele.style.borderRadius="10px"
+                const img = document.createElement("img");
+                img.src = 'https://img.freepik.com/premium-photo/showcase-modern-gadgets-innovative-concepts_977107-1802.jpg';
+                img.alt = 'Electronics';
+                img.width = 350;
+                img.height=350;
+                const pele=document.createElement("p")
+                pele.textContent="ELECTRONICS"
+                pele.style.fontFamily='Georgia, Times New Roman, Times, serif'
+                pele.style.textAlign='center'
+                ele.appendChild(img);
+                ele.appendChild(pele)
+                const gro = document.getElementById("H-Grocery");
+                gro.style.boxShadow="0 4px 8px rgba(255, 255, 255, 0.404)";
+                gro.style.border="1px solid white"
+                gro.style.borderRadius="10px"
+                const gimg = document.createElement("img");
+                gimg.src = 'https://img.freepik.com/premium-vector/vibrant-illustration-shows-variety-grocery-items-including-fruits-vegetables-packaged-goods-customizable-grocery-shopping-illustration-that-is-disproportionate_585735-35646.jpg';
+                gimg.alt = 'Grocery';
+                gimg.width = 350;
+                const pgro=document.createElement("p")
+                pgro.textContent="GROCERY"
+                pgro.style.fontFamily='Georgia, Times New Roman, Times, serif'
+                pgro.style.textAlign='center';
+                gro.appendChild(gimg);
+                gro.appendChild(pgro);
+                const deco = document.getElementById("H-Home-Furniture");
+                deco.style.boxShadow="0 4px 8px rgba(255, 255, 255, 0.404)";
+                deco.style.border="1px solid white"
+                deco.style.borderRadius="10px"
+                const himg = document.createElement("img");
+                himg.src = 'https://i.ytimg.com/vi/xfOBHCDUgVQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLANWiSqjHaNw2kIp4LgQacJFuVq_w';
+                himg.alt = 'Decors';
+                himg.width = 350;
+                const phom=document.createElement("p")
+                phom.textContent="HOME DECORS"
+                phom.style.fontFamily='Georgia, Times New Roman, Times, serif'
+                phom.style.textAlign='center'
+                deco.appendChild(himg); 
+                deco.appendChild(phom); 
+            localStorage.setItem('uname', name);
+            const wel=document.getElementById("welcome");
+            wel.style.marginTop="20px"
+            const wp=document.createElement("p");
+            wp.textContent=`Welcome to Shop spot ${name}`
+            wp.style.fontFamily='Arial, Helvetica, sans-serif'
+            wp.style.color="firebrick"
+            wp.style.fontSize='larger'
+            wel.appendChild(wp)
+        }
+    </script>
+</body>
+</html>
