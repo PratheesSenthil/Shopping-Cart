@@ -12,6 +12,9 @@
     justify-items: center;
     align-content: center;
 }
+.products>div>img{
+    margin-left: 50px;
+}
 .pi{
     display: flex;
     flex-direction: row;
